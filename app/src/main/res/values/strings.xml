@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SQlite1</string>
+    <string name="movie_num">共有%1$s部影片</string>
+    <string name="movie_time">%1$s-%2$s-%3$s</string>
+</resources>

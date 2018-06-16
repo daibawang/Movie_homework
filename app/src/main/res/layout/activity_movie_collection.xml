@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <!--外边框-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        >
+        <!--android:background="@drawable/border"-->
+        <TextView
+            android:textSize="15sp"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:id="@+id/moviesnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_num" />
+    </LinearLayout>
+<com.aspsine.irecyclerview.IRecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/XL"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:loadMoreEnabled="true"
+    app:refreshEnabled="true"
+    >
+   <android.support.v7.widget.RecyclerView
+        android:id="@+id/sc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+</com.aspsine.irecyclerview.IRecyclerView>
+</LinearLayout>
