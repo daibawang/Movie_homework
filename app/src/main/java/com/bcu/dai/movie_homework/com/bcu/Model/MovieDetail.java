@@ -1,14 +1,17 @@
 package com.bcu.dai.movie_homework.com.bcu.Model;
 
+import org.litepal.crud.LitePalSupport;
+
 /**
- * Created by byy on 2018/6/8.
+ * Created by dai on 2018/6/17.
  */
 
-public class Movie {
+public class MovieDetail extends LitePalSupport {
+
     private String actorName1;
     private String actorName2;
     private String directorName;
-    private String commonSpecial;
+    //private String commonSpecial;
     private String img;
     private boolean is3D;
     private boolean isIMAX;
@@ -18,8 +21,12 @@ public class Movie {
     private int rDay;
     private int rMonth;
     private int rYear;
+    //评分
     private double ratingFinal;
+    //英文名
+    private String  titleEn;
     private String titleCn;
     private String type;
+    //gxing
 
 }

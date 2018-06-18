@@ -2,11 +2,7 @@ package com.bcu.dai.movie_homework.Activity;
 
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +10,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +24,14 @@ import com.zhy.http.okhttp.callback.Callback;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.litepal.LitePal;
-import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -46,27 +43,37 @@ public class MovieCollectionActivity extends AppCompatActivity {
     private MoviecollectionAdapter movieAdapter;
     private SwipeRefreshLayout swipeRefresh;
     private TextView movienums;
+    private PtrClassicFrameLayout mPtrFrame;
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_collection);
-        //movies= LitePal.findAll(MovieCollection.class);
-        movies = LitePal.where("collection==0").find(MovieCollection.class);
         sc = findViewById(R.id.sc);
         movienums = findViewById(R.id.moviesnum);
+        //movies= LitePal.findAll(MovieCollection.class);
+        int sqnum = LitePal.where("collection==?", "0").count(MovieCollection.class);
+        String numistr = this.getResources().getString(R.string.movie_num);
+        String nums = String.format(numistr, sqnum + "");
+        movienums.setText(nums);
+        movies = LitePal.where("collection==0").find(MovieCollection.class);
         movieAdapter = new MoviecollectionAdapter(this, movies);
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        //分割线
+        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        sc.setLayoutManager(linearLayoutManager);
+        sc.addItemDecoration(decoration);
+        sc.setAdapter(movieAdapter);
         movieAdapter.setOnDelListener(new MoviecollectionAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
                 if (pos >= 0 && pos < movies.size()) {
-                    Toast.makeText(MovieCollectionActivity.this, "删除:" + pos, Toast.LENGTH_SHORT).show();
                     movies.remove(pos);
                     movieAdapter.notifyItemRemoved(pos);
-
+                    loadnum();
                 }
             }
-
             @Override
             public void onTop(int pos) {
                 if (pos > 0 && pos < movies.size()) {
@@ -83,84 +90,80 @@ public class MovieCollectionActivity extends AppCompatActivity {
             }
 
         });
+        //int sqnum = LitePal.count(MovieCollection.class);
 
+        //下拉刷新//刷新布局
+        mPtrFrame = findViewById(R.id.xl);
+        final PtrClassicDefaultHeader header = new PtrClassicDefaultHeader(this);
+        mPtrFrame.setLastUpdateTimeRelateObject(this);
+        mPtrFrame.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //调用下拉刷新监听
+                mPtrFrame.autoRefresh(true);
+            }
+        },200);
+        //设置下拉刷新监听
+        mPtrFrame.setPtrHandler(new PtrDefaultHandler() {
+            @Override
+            public void onRefreshBegin(final PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //loadData();这里有待思索,
+                        loadDateBase();
+                        movieAdapter.notifyDataSetChanged();
+                        frame.refreshComplete();
+                    }
+                },2000);
+            }
+        });
+    }
+    public void loadnum(){
         int sqnum = LitePal.where("collection==?", "0").count(MovieCollection.class);
         String numistr = this.getResources().getString(R.string.movie_num);
         String nums = String.format(numistr, sqnum + "");
         movienums.setText(nums);
-        //int sqnum = LitePal.count(MovieCollection.class);
-        linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        //分割线
-        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        sc.setLayoutManager(linearLayoutManager);
-        sc.addItemDecoration(decoration);
-        sc.setAdapter(movieAdapter);
-        IRecyclerView iRecyclerView=findViewById(R.id.XL);
-        iRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //LoadMoreFooterView loadMoreFooterView = (LoadMoreFooterView) iRecyclerView.getLoadMoreFooterView();
-//        iRecyclerView.addHeaderView(headerView);
-//        iRecyclerView.addFooterView(footerView);
-
-
     }
+    public void loadDateBase(){
+        int sqnum = LitePal.where("collection==?", "0").count(MovieCollection.class);
+        String numistr = this.getResources().getString(R.string.movie_num);
+        String nums = String.format(numistr, sqnum + "");
+        movienums.setText(nums);
+        movies = LitePal.where("collection==0").find(MovieCollection.class);
+        movieAdapter = new MoviecollectionAdapter(MovieCollectionActivity.this, movies);
+        sc.setAdapter(movieAdapter);
+    }
+           private void loadData(){
+                String path="https://api-m.mtime.cn/PageSubArea/HotPlayMovies.api?locationId=290";
+               OkHttpUtils.get().url(path).build().execute(new MyCallback());
 
-
-//        //下拉刷新
-//        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.recycler_view);
-//        swipeRefresh.setColorSchemeColors(R.color.colorPrimary);
-//        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                swipeRefresh.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        swipeRefresh.setRefreshing(true);
-//                        //7\refresh();
-//                    }
-//                });
-//                //网络请求
-//                loadMovieDatasFromNet("https://api-m.mtime.cn/PageSubArea/HotPlayMovies.api?locationId=290");
-//            }
-//        });
-//        swipeRefresh.setRefreshing(false);
-//    }
-//    private void loadMovieDatasFromNet(String path){
-//        OkHttpUtils.get().url(path).build().execute(new MyCallback());
-//
-//    }
-//
-//     class MyCallback extends Callback <List<MovieCollection>>{
-//         @Override
-//         public List<MovieCollection> parseNetworkResponse(Response response, int id) throws Exception {
-//             String content = response.body().string();
-//             JSONObject jsonObject = new JSONObject(content);
-//             List<MovieCollection> movienew = new ArrayList<>();
-//             JSONArray moviesJson = (JSONArray) jsonObject.get("movies");
-//             Gson gson = new Gson();
-//             for(int i = 0;i<moviesJson.length();i++){
-//                 JSONObject movieJson = (JSONObject) moviesJson.get(i);
-//                 MovieCollection moviene  = gson.fromJson(movieJson.toString(),MovieCollection.class);
-//                 movienew.add(moviene);
-//             }
-//             Log.i("movieCollections", "parseNetworkResponse: zzzz"+ movies);
-//             swipeRefresh.setRefreshing(false);
-//             return movienew;
-//         }
-//
-//         @Override
-//         public void onError(Call call, Exception e, int id) {
-//         }
-//
-//         @Override
-//         public void onResponse(List<MovieCollection> response, int id) {
-//             movieAdapter = new MoviecollectionAdapter(MovieCollectionActivity.this,response);
-//         }
-//     }
-     //刷新
-    public void refresh() {
-        onCreate(null);
-
+           }
+        class MyCallback extends Callback<List<MovieCollection>>{
+        @Override
+        public List<MovieCollection> parseNetworkResponse(Response response, int id) throws Exception {
+            String content = response.body().string();
+            JSONObject jsonObject = new JSONObject(content);
+            List<MovieCollection> movies = new ArrayList<>();
+            JSONArray moviesJson = (JSONArray) jsonObject.get("movies");
+            Gson gson = new Gson();
+            for(int i = 0;i<moviesJson.length();i++){
+                JSONObject movieJson = (JSONObject) moviesJson.get(i);
+                //movieJson就是json的电影对象 ---> Movie
+                MovieCollection movie  = gson.fromJson(movieJson.toString(),MovieCollection.class);
+                movies.add(movie);
+            }
+            Log.i("movieCollections", "parseNetworkResponse: zzzz"+ movies);
+            return movies;
+        }
+        @Override
+        public void onError(Call call, Exception e, int id) {
+        }
+        @Override
+        public void onResponse(List<MovieCollection> response, int id) {
+            movieAdapter = new MoviecollectionAdapter(MovieCollectionActivity.this, movies);
+            sc.setAdapter(movieAdapter);
+        }
     }
 
 }

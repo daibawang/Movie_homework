@@ -3,6 +3,7 @@ package com.bcu.dai.movie_homework.Adapter;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bcu.dai.movie_homework.Activity.MovieDetailsActiyity;
 import com.bcu.dai.movie_homework.R;
 import com.bcu.dai.movie_homework.View.ASmartimgView;
 import com.bcu.dai.movie_homework.com.bcu.Model.MovieCollection;
@@ -36,6 +38,7 @@ public class MoviecollectionAdapter extends RecyclerView.Adapter<Moviecollection
     private LayoutInflater mInfalter;
     private SQLiteDatabase db;
     private MovieCollection delMovie;
+    private  MovieCollection clickMovie;
 
     public MoviecollectionAdapter(Context context, List<MovieCollection> datas) {
         this.context = context;
@@ -80,7 +83,10 @@ public class MoviecollectionAdapter extends RecyclerView.Adapter<Moviecollection
             @Override
             public void onClick(View view) {
                 Log.i("TAG", "onClick()"+"点击了"+position);
-
+                clickMovie=movieCollectionList.get(position);
+                Intent intent = new Intent(context, MovieDetailsActiyity.class);
+                intent.putExtra("movieid",clickMovie.getMovieId());
+                context.startActivity(intent);
             }
         });
         //置顶
@@ -113,11 +119,7 @@ public class MoviecollectionAdapter extends RecyclerView.Adapter<Moviecollection
         Glide.with(context).load(R.drawable.load).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imgText);
         holder.imgText.setId_(position);
         holder.imgText.loadImageFromNet(movieCollection.getImg());
-
     }
-
-
-
     @Override
     public int getItemCount() {return this.movieCollectionList.size();}
     /**
@@ -137,6 +139,7 @@ public class MoviecollectionAdapter extends RecyclerView.Adapter<Moviecollection
     public void setOnDelListener(onSwipeListener mOnDelListener) {
         this.mOnSwipeListener = mOnDelListener;
     }
+
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
