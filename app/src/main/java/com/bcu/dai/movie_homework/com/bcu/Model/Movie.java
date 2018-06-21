@@ -5,6 +5,7 @@ package com.bcu.dai.movie_homework.com.bcu.Model;
  */
 
 public class Movie {
+
     private String actorName1;
     private String actorName2;
     private String directorName;
@@ -23,3 +24,4 @@ public class Movie {
     private String type;
 
 }
+

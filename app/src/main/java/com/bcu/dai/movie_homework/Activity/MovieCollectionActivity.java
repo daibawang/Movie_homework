@@ -165,5 +165,11 @@ public class MovieCollectionActivity extends AppCompatActivity {
             sc.setAdapter(movieAdapter);
         }
     }
+    public void updata(){
+        int sqnum = LitePal.where("collection==?", "0").count(MovieCollection.class);
+        String numistr = this.getResources().getString(R.string.movie_num);
+        String nums = String.format(numistr, sqnum + "");
+        movienums.setText(nums);
+    }
 
 }
