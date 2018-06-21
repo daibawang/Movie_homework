@@ -54,7 +54,6 @@ public class action_Activity extends AppCompatActivity {
         public List<MovieDetailBean> parseNetworkResponse(Response response, int id) throws Exception {
             String content = response.body().string();
             JSONObject jsonObject = new JSONObject(content);
-
             List<MovieDetailBean> moviess = new ArrayList<>();
 //            Log.i("JSON", "JSON: "+moviesJson.get(0));
             //new一个Gson对象
