@@ -60,6 +60,7 @@ public class action_Activity extends AppCompatActivity {
 //            JSONObject  jsondata= (JSONObject) jsonObject.get("data");
 //            JSONObject  jsonbasic=(JSONObject) jsondata.get("basic");
 //            JSONArray  jsonactors=(JSONArray) jsonbasic.get("actors");
+
             JSONArray moviesJson = (JSONArray) jsonObject.get("data");
             Gson gson = new Gson();
             for(int i = 0;i<moviesJson.length();i++){

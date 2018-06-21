@@ -44,6 +44,7 @@ public class MovieCollectionActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefresh;
     private TextView movienums;
     private PtrClassicFrameLayout mPtrFrame;
+    private RecyclerView recyclerView;
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
