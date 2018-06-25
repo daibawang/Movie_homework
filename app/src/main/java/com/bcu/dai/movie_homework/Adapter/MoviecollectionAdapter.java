@@ -39,6 +39,16 @@ public class MoviecollectionAdapter extends RecyclerView.Adapter<Moviecollection
     private SQLiteDatabase db;
     private MovieCollection delMovie;
     private  MovieCollection clickMovie;
+    private OnMyItemClickListener listener;
+    //设置监听
+    public void setOnMyItemClickListener(OnMyItemClickListener listener){
+        this.listener = listener;
+
+    }
+    public interface OnMyItemClickListener{
+        void myClick(View v,int pos);
+        void mLongClick(View v,int pos);
+    }
 
     public MoviecollectionAdapter(Context context, List<MovieCollection> datas) {
         this.context = context;

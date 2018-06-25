@@ -10,6 +10,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +67,17 @@ public class MovieCollectionActivity extends AppCompatActivity {
         sc.setLayoutManager(linearLayoutManager);
         sc.addItemDecoration(decoration);
         sc.setAdapter(movieAdapter);
+        movieAdapter.setOnMyItemClickListener(new MoviecollectionAdapter.OnMyItemClickListener() {
+            @Override
+            public void myClick(View v, int pos) {
+                Log.i("listenclick", "myClick: "+pos);
+            }
+
+            @Override
+            public void mLongClick(View v, int pos) {
+
+            }
+        });
         movieAdapter.setOnDelListener(new MoviecollectionAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
@@ -92,7 +104,6 @@ public class MovieCollectionActivity extends AppCompatActivity {
 
         });
         //int sqnum = LitePal.count(MovieCollection.class);
-
         //下拉刷新//刷新布局
         mPtrFrame = findViewById(R.id.xl);
         final PtrClassicDefaultHeader header = new PtrClassicDefaultHeader(this);

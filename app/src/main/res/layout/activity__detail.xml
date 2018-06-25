@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+   <!--滑动机制-->
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/sc_movie-detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--引入详情显示布局-->
+            <include layout="@layout/layout_movie_detail_info"></include>
+            <!--折叠Textview-->
+            <com.lcodecore.extextview.ExpandTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/text"
+                android:textColor="#666666"
+                android:textSize="16sp"
+                app:arrowAlign="center"
+                app:arrowPadding="8dp"
+                app:arrowPosition="below"
+                app:maxCollapsedLines="4" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_14"
+                android:background="@color/divider_normal" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</FrameLayout>

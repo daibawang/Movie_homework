@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/detail_movie_info"
+    android:layout_width="match_parent"
+    android:layout_height="270dp">
+    <ImageView
+        android:id="@+id/iv_img_bg"
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        android:background="@drawable/textbackground"
+        android:foreground="@drawable/ic_movie_detail_fg"
+        android:scaleType="centerCrop"/>
+    <!--放播放视频的按钮-->
+    <FrameLayout
+        android:id="@+id/fl_movie_img"
+        android:layout_width="115dp"
+        android:layout_height="165dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:background="@color/white"
+        android:padding="1dp">
+
+        <ImageView
+            android:id="@+id/iv_movie_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_video_play" />
+
+    </FrameLayout>
+    <!--详情-->
+    <LinearLayout
+        android:layout_alignBottom="@id/fl_movie_img"
+        android:layout_alignTop="@id/fl_movie_img"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_toRightOf="@id/fl_movie_img"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--名称-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_movie_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="电影名字" />
+
+            <TextView
+                android:text="3D"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:id="@+id/tv_movie_3D"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="/ 巨幕"
+                android:layout_marginLeft="@dimen/dp_4"
+                android:id="@+id/tv_movie_巨幕"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_movie_english_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:text="english name" />
+
+        <TextView
+            android:id="@+id/tv_movie_type"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/text_gray"
+            android:textSize="14sp"
+            android:text="电影类型" />
+        <TextView
+            android:id="@+id/tv_src_place_time"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/text_gray"
+            android:textSize="14sp"
+            android:text="中国/110分钟" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_movie_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="@string/movie_time" />
+
+            <TextView
+                android:text="上映"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:id="@+id/tv_movie_sy"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--图标-->
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.1">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_6"
+                android:layout_weight="1"
+                android:background="@drawable/bg_ll_favorite"
+                >
+                <ImageView
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_love" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_6"
+                    android:gravity="center"
+                    android:text="喜欢"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_weight="1"
+                android:background="@drawable/bg_ll_favorite">
+
+                <ImageView
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_star" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_6"
+                    android:text="收藏"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <!--占位置-->
+            <TextView
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

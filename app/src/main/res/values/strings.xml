@@ -2,4 +2,8 @@
     <string name="app_name">SQlite1</string>
     <string name="movie_num">共有%1$s部影片</string>
     <string name="movie_time">%1$s-%2$s-%3$s</string>
+    <string name="text">电影讲述数学专家重回培养过恐龙的桑纳岛，恐龙再度现身的消息吸引了国际遗传公司的注意，
+        组织了一群专家重回岛上考察。而另一批捕猎队则准备将恐龙捕捉到之后送到美国本土的圣地牙哥公园展出。
+        两帮人马在岛上相遇，遭到逃出铁箱的大群恐龙追杀.
+        </string>
 </resources>

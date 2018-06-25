@@ -7,7 +7,7 @@ import org.litepal.crud.LitePalSupport;
  * Created by dai on 2018/6/15.ActionActivity
  */
 
-public class MovieCollection extends LitePalSupport {
+public class MovieCollection  extends LitePalSupport{
     private int id;
     private boolean collection;
     private String actorName1;

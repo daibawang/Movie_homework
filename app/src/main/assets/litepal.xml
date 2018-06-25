@@ -2,11 +2,17 @@
 <litepal>
     <dbname value="Movie" ></dbname>
 
-    <version value="7" ></version>
+    <version value="20" ></version>
 
     <list>
         <!--让litepal自动创建表Movie，根据指定的Java对象-->
         <mapping class="com.bcu.dai.movie_homework.com.bcu.Model.MovieCollection"></mapping>
         <mapping class="com.bcu.dai.movie_homework.com.bcu.Model.MovieDetailBean"></mapping>
+        <mapping class="com.bcu.dai.movie_homework.json.Actors"></mapping>
+        <mapping class="com.bcu.dai.movie_homework.json.Video"></mapping>
+        <mapping class="com.bcu.dai.movie_homework.json.Director"></mapping>
+        <mapping class="com.bcu.dai.movie_homework.json.Other"></mapping>
+        <mapping class="com.bcu.dai.movie_homework.json.StageImg"></mapping>
+
     </list>
 </litepal>

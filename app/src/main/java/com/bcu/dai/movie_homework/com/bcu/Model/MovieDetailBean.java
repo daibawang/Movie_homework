@@ -331,6 +331,7 @@ public class MovieDetailBean extends LitePalSupport {
             private String url;
             private VideoBean video;
             private List<ActorsBean> actors;
+
             private List<?> festivals;
             private List<String> type;
 
