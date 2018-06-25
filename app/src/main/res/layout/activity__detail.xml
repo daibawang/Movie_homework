@@ -10,7 +10,7 @@
     android:fitsSystemWindows="true">
    <!--滑动机制-->
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/sc_movie-detail"
+        android:id="@+id/sc_movie_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
