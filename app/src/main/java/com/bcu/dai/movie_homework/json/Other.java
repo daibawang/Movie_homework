@@ -28,8 +28,18 @@ public class Other extends LitePalSupport {
     public String story;
     private Video vedio;
     private int id;
+    private List<String> type;
+
     private List<Actors> actorsList = new ArrayList<Actors>();
     private Director director;
+
+    public List<String> getType() {
+        return type;
+    }
+
+    public void setType(List<String> type) {
+        this.type = type;
+    }
 
     public String getReleaseArea() {
         return releaseArea;

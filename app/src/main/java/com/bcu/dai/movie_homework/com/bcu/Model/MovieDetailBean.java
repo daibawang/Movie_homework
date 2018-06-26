@@ -241,6 +241,7 @@ public class MovieDetailBean extends LitePalSupport {
                     this.typeName = typeName;
                 }
 
+
                 public String getUrl() {
                     return url;
                 }

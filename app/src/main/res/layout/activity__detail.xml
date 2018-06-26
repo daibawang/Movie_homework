@@ -19,8 +19,17 @@
             android:layout_height="wrap_content">
             <!--引入详情显示布局-->
             <include layout="@layout/layout_movie_detail_info"></include>
+            <TextView
+                android:textColor="#45494B"
+                android:text="剧情介绍"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:textSize="@dimen/dp_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <!--折叠Textview-->
             <com.lcodecore.extextview.ExpandTextView
+                android:id="@+id/rv_movie_story"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/dp_10"
@@ -37,8 +46,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_14"
                 android:background="@color/divider_normal" />
+            <TextView
+                android:text="演员"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_movie_star"
+                android:paddingBottom="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_14"
+                android:background="@color/divider_normal" />
+            <TextView
+                android:text="剧照"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_movie_video_photo"
+                android:paddingBottom="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
 
 </FrameLayout>
