@@ -16,6 +16,25 @@ public class Video  extends LitePalSupport {
     private int videoSourceType;
     private int id;
     private long moviedid;
+    private int length;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
     public long getMoviedid() {
         return moviedid;
     }

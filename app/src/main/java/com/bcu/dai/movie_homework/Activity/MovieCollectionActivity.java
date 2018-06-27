@@ -67,17 +67,18 @@ public class MovieCollectionActivity extends AppCompatActivity {
         sc.setLayoutManager(linearLayoutManager);
         sc.addItemDecoration(decoration);
         sc.setAdapter(movieAdapter);
-        movieAdapter.setOnMyItemClickListener(new MoviecollectionAdapter.OnMyItemClickListener() {
-            @Override
-            public void myClick(View v, int pos) {
-                Log.i("listenclick", "myClick: "+pos);
-            }
-
-            @Override
-            public void mLongClick(View v, int pos) {
-
-            }
-        });
+//
+//        movieAdapter.setOnMyItemClickListener(new MoviecollectionAdapter.OnMyItemClickListener() {
+//            @Override
+//            public void myClick(View v, int pos) {
+//                Log.i("listenclick", "myClick: "+pos);
+//            }
+//
+//            @Override
+//            public void mLongClick(View v, int pos) {
+//
+//            }
+//        });
         movieAdapter.setOnDelListener(new MoviecollectionAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
@@ -86,6 +87,7 @@ public class MovieCollectionActivity extends AppCompatActivity {
                     movieAdapter.notifyItemRemoved(pos);
                     loadnum();
                 }
+
             }
             @Override
             public void onTop(int pos) {
@@ -183,5 +185,6 @@ public class MovieCollectionActivity extends AppCompatActivity {
         String nums = String.format(numistr, sqnum + "");
         movienums.setText(nums);
     }
+
 
 }

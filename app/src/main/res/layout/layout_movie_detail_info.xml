@@ -125,27 +125,33 @@
             android:layout_height="0dp"
             android:layout_weight="1.1">
             <LinearLayout
+                android:id="@+id/movie_love_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_6"
                 android:layout_weight="1"
                 android:background="@drawable/bg_ll_favorite"
                 >
+
                 <ImageView
+                    android:id="@+id/movie_love_heart"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_love" />
+                    android:src="@drawable/love1" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/movie_love_text"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_6"
-                    android:gravity="center"
-                    android:text="喜欢"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="left"
+                    android:text="喜 欢"
                     android:textColor="@color/white" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/movie_collection_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_6"
@@ -153,20 +159,24 @@
                 android:background="@drawable/bg_ll_favorite">
 
                 <ImageView
+                    android:id="@+id/movie_collection_star"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_star" />
+                    android:src="@drawable/star1" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/movie_collection_text"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_6"
-                    android:text="收藏"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="left"
+                    android:text="收 藏"
                     android:textColor="@color/white" />
             </LinearLayout>
             <!--占位置-->
             <TextView
-                android:layout_weight="0.5"
+                android:layout_weight="0.4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
             </TextView>
