@@ -18,6 +18,15 @@ public class Video  extends LitePalSupport {
     private long moviedid;
     private int length;
     private int type;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getType() {
         return type;
